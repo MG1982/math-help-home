@@ -1,0 +1,7 @@
+{
+  "name": "math-help-home",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
