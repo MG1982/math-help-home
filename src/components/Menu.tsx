@@ -8,7 +8,6 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
-  IonButton,
 } from "@ionic/react";
 
 import React from "react";
@@ -18,11 +17,7 @@ import {
   logInSharp,
   personAddOutline,
   personAddSharp,
-  closeSharp,
-  closeOutline,
 } from "ionicons/icons";
-
-import app from "../base";
 
 import "./Menu.css";
 
@@ -41,16 +36,10 @@ const appPages: AppPage[] = [
     mdIcon: logInSharp,
   },
   {
-    title: "SignUp",
-    url: "/page/SignUp",
+    title: "Register",
+    url: "/page/Register",
     iosIcon: personAddOutline,
     mdIcon: personAddSharp,
-  },
-  {
-    title: "Multiplication",
-    url: "/page/Multiplication",
-    iosIcon: closeOutline,
-    mdIcon: closeSharp,
   },
 ];
 
@@ -63,7 +52,6 @@ const Menu: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>Username here</IonListHeader>
           <IonNote>user email here</IonNote>
-          <IonButton onClick={() => app.auth().signOut()}>Logout</IonButton>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>

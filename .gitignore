@@ -19,7 +19,7 @@
 .env.test.local
 .env.production.local
 .vscode
-base.js
+firebaseConfig.ts
 
 
 npm-debug.log*
