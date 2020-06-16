@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 
-import { IonButton, IonItem, IonInput, IonCard, IonIcon } from "@ionic/react";
+import {
+  IonButton,
+  IonItem,
+  IonInput,
+  IonCard,
+  IonIcon,
+  IonLoading,
+} from "@ionic/react";
 import { logOutOutline, logOutSharp } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { toast } from "../toast";
 import { registerUser } from "../firebaseConfig";
 
 const Register: React.FC = () => {
+  const [busy, setBusy] = useState<boolean>(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
 
   async function register() {
     // validation
+    setBusy(true);
     if (password !== cpassword) {
       return toast("Passwords do not match");
     }
@@ -24,10 +33,16 @@ const Register: React.FC = () => {
     if (res) {
       toast("Registration successful!");
     }
+    setBusy(false);
   }
 
   return (
     <div className="container">
+      <IonLoading
+        message="Registration in progress..."
+        duration={0}
+        isOpen={busy}
+      />
       <IonCard className="ion-padding">
         <IonItem>
           <IonInput

@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 
-import { IonButton, IonItem, IonInput, IonCard, IonIcon } from "@ionic/react";
+import {
+  IonButton,
+  IonItem,
+  IonInput,
+  IonCard,
+  IonIcon,
+  IonLoading,
+} from "@ionic/react";
 import { logInOutline, logInSharp } from "ionicons/icons";
 import { Link } from "react-router-dom";
 import { loginUser } from "../firebaseConfig";
 import { toast } from "../toast";
 
 const Register: React.FC = () => {
+  const [busy, setBusy] = useState<boolean>(false);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   async function login() {
+    setBusy(true);
     const res = await loginUser(username, password);
     if (res) {
       toast("You have logged in!");
     }
+    setBusy(false);
   }
 
   return (
     <div className="container">
+      <IonLoading message="Logging in..." duration={0} isOpen={busy} />
       <IonCard className="ion-padding">
         <IonItem>
           <IonInput
