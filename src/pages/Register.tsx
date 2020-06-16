@@ -66,7 +66,7 @@ const Register: React.FC = () => {
         </IonItem>
         <IonButton onClick={register}>
           <IonIcon ios={logOutOutline} md={logOutSharp} slot="start"></IonIcon>
-          Signup
+          Register
         </IonButton>
         <p>
           Already have an account? <Link to="/page/Login">Login</Link>

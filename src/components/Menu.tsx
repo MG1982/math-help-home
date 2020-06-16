@@ -17,6 +17,8 @@ import {
   logInSharp,
   personAddOutline,
   personAddSharp,
+  homeOutline,
+  homeSharp,
 } from "ionicons/icons";
 
 import "./Menu.css";
@@ -29,6 +31,12 @@ interface AppPage {
 }
 
 const appPages: AppPage[] = [
+  {
+    title: "Home",
+    url: "/page/Home",
+    iosIcon: homeOutline,
+    mdIcon: homeSharp,
+  },
   {
     title: "Login",
     url: "/page/Login",
