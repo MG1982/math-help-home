@@ -49,6 +49,12 @@ const appPages: AppPage[] = [
     iosIcon: personAddOutline,
     mdIcon: personAddSharp,
   },
+  {
+    title: "Dashboard",
+    url: "/page/Dashboard",
+    iosIcon: personAddOutline,
+    mdIcon: personAddSharp,
+  },
 ];
 
 const Menu: React.FC = () => {

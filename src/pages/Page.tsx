@@ -6,15 +6,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonSpinner,
 } from "@ionic/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, Route } from "react-router";
 import Login from "./Login";
 import Register from "./Register";
-import { getCurrentUser } from "../firebaseConfig";
-import "./Page.css";
 import Home from "./Home";
+import Dashboard from "./Dashboard";
+
+import "./Page.css";
 
 const RoutingSystem: React.FC = () => {
   return (
@@ -22,26 +22,13 @@ const RoutingSystem: React.FC = () => {
       <Route path="/page/Home" component={Home} exact />
       <Route path="/page/Login" component={Login} exact />
       <Route path="/page/Register" component={Register} exact />
+      <Route path="/page/Dashboard" component={Dashboard} exact />
     </div>
   );
 };
 
 const Page: React.FC = () => {
-  const [busy, setBusy] = useState(true);
   const { name } = useParams<{ name: string }>();
-
-  useEffect(() => {
-    getCurrentUser().then((user) => {
-      console.log(user);
-      if (user) {
-        // User is logged in
-        window.history.replaceState({}, "", "/page/Home");
-      } else {
-        window.history.replaceState({}, "", "/");
-      }
-      setBusy(false);
-    });
-  }, []);
 
   return (
     <IonPage>
@@ -59,7 +46,7 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {busy ? <IonSpinner /> : <RoutingSystem />}
+        <RoutingSystem />
       </IonContent>
     </IonPage>
   );
