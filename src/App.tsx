@@ -1,14 +1,9 @@
 import Menu from "./components/Menu";
 import Page from "./pages/Page";
 import React, { useEffect, useState } from "react";
-import {
-  IonApp,
-  IonRouterOutlet,
-  IonSplitPane,
-  IonSpinner,
-} from "@ionic/react";
+import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { getCurrentUser } from "./firebaseConfig";
 
 /* Core CSS required for Ionic components to work properly */
@@ -36,11 +31,11 @@ const App: React.FC = () => {
   useEffect(() => {
     getCurrentUser().then((user) => {
       console.log(user);
-      if (user) {
+      if (!user) {
         // User is logged in
         window.history.replaceState({}, "", "/page/Dashboard");
       } else {
-        window.history.replaceState({}, "", "/Home");
+        window.history.replaceState({}, "", "/page/Login");
       }
       setBusy(false);
     });
@@ -52,14 +47,8 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            {busy ? (
-              <IonSpinner />
-            ) : (
-              <Route path="/page/:name" component={Page} exact />
-            )}
-            <Redirect from="/" to="/page/Home" exact />
+            <Route path="/page/:name" component={Page} exact />
           </IonRouterOutlet>
-          )
         </IonSplitPane>
       </IonReactRouter>
     </IonApp>

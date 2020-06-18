@@ -11,7 +11,6 @@ import {
 } from "@ionic/react";
 
 import React from "react";
-import { useLocation } from "react-router-dom";
 import {
   logInOutline,
   logInSharp,
@@ -19,79 +18,75 @@ import {
   personAddSharp,
   homeOutline,
   homeSharp,
+  calculatorOutline,
+  calculatorSharp,
 } from "ionicons/icons";
 
 import "./Menu.css";
 
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-}
-
-const appPages: AppPage[] = [
-  {
-    title: "Home",
-    url: "/page/Home",
-    iosIcon: homeOutline,
-    mdIcon: homeSharp,
-  },
-  {
-    title: "Login",
-    url: "/page/Login",
-    iosIcon: logInOutline,
-    mdIcon: logInSharp,
-  },
-  {
-    title: "Register",
-    url: "/page/Register",
-    iosIcon: personAddOutline,
-    mdIcon: personAddSharp,
-  },
-  {
-    title: "Dashboard",
-    url: "/page/Dashboard",
-    iosIcon: personAddOutline,
-    mdIcon: personAddSharp,
-  },
-];
-
-const Menu: React.FC = () => {
-  const location = useLocation();
-
-  return (
-    <IonMenu contentId="main" type="overlay">
+const Menu: React.FC = () => (
+  <>
+    <IonMenu side="start" contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Username here</IonListHeader>
-          <IonNote>user email here</IonNote>
-          {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem
-                  className={
-                    location.pathname === appPage.url ? "selected" : ""
-                  }
-                  routerLink={appPage.url}
-                  routerDirection="none"
-                  lines="none"
-                  detail={false}
-                >
-                  <IonIcon
-                    slot="start"
-                    ios={appPage.iosIcon}
-                    md={appPage.mdIcon}
-                  />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+          {/* welcome message for logged in user or hello message for guest */}
+          <IonListHeader>Welcome Back!</IonListHeader>
+          <IonNote>user name here</IonNote>
+
+          <IonMenuToggle autoHide={false}>
+            <IonItem
+              routerLink="./Home"
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <IonIcon ios={homeOutline} md={homeSharp} slot="start"></IonIcon>
+              <IonLabel>Home</IonLabel>
+            </IonItem>
+            <IonItem
+              routerLink="./Dashboard"
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <IonIcon
+                ios={calculatorOutline}
+                md={calculatorSharp}
+                slot="start"
+              ></IonIcon>
+              <IonLabel>Dashboard</IonLabel>
+            </IonItem>
+            <IonItem
+              routerLink="./Login"
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <IonIcon
+                ios={logInOutline}
+                md={logInSharp}
+                slot="start"
+              ></IonIcon>
+              <IonLabel>Login</IonLabel>
+            </IonItem>
+            <IonItem
+              routerLink="./Register"
+              routerDirection="none"
+              lines="none"
+              detail={false}
+            >
+              <IonIcon
+                ios={personAddOutline}
+                md={personAddSharp}
+                slot="start"
+              ></IonIcon>
+              <IonLabel>Register</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
       </IonContent>
     </IonMenu>
-  );
-};
+  </>
+);
 
 export default Menu;
