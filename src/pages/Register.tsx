@@ -7,6 +7,13 @@ import {
   IonCard,
   IonIcon,
   IonLoading,
+  IonPage,
+  IonToolbar,
+  IonHeader,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonContent,
 } from "@ionic/react";
 import { logOutOutline, logOutSharp } from "ionicons/icons";
 import { Link } from "react-router-dom";
@@ -37,42 +44,64 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="container">
-      <IonLoading
-        message="Registration in progress..."
-        duration={0}
-        isOpen={busy}
-      />
-      <IonCard className="ion-padding">
-        <IonItem>
-          <IonInput
-            placeholder="Username?"
-            onIonChange={(e: any) => setUsername(e.target.value)}
-          ></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonInput
-            type="password"
-            placeholder="Password?"
-            onIonChange={(e: any) => setPassword(e.target.value)}
-          ></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonInput
-            type="password"
-            placeholder="Confirm Password?"
-            onIonChange={(e: any) => setCPassword(e.target.value)}
-          ></IonInput>
-        </IonItem>
-        <IonButton onClick={register}>
-          <IonIcon ios={logOutOutline} md={logOutSharp} slot="start"></IonIcon>
-          Register
-        </IonButton>
-        <p>
-          Already have an account? <Link to="/page/Login">Login</Link>
-        </p>
-      </IonCard>
-    </div>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle>Register</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Register</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <div className="container">
+          <IonLoading
+            message="Registration in progress..."
+            duration={0}
+            isOpen={busy}
+          />
+          <IonCard className="ion-padding">
+            <IonItem>
+              <IonInput
+                placeholder="Username?"
+                onIonChange={(e: any) => setUsername(e.target.value)}
+              ></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonInput
+                type="password"
+                placeholder="Password?"
+                onIonChange={(e: any) => setPassword(e.target.value)}
+              ></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonInput
+                type="password"
+                placeholder="Confirm Password?"
+                onIonChange={(e: any) => setCPassword(e.target.value)}
+              ></IonInput>
+            </IonItem>
+            <IonButton onClick={register}>
+              <IonIcon
+                ios={logOutOutline}
+                md={logOutSharp}
+                slot="start"
+              ></IonIcon>
+              Register
+            </IonButton>
+            <p>
+              Already have an account? <Link to="/Login">Login</Link>
+            </p>
+          </IonCard>
+        </div>
+      </IonContent>
+    </IonPage>
   );
 };
 

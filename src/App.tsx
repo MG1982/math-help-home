@@ -1,10 +1,19 @@
-import Menu from "./components/Menu";
-import Page from "./pages/Page";
 import React, { useEffect, useState } from "react";
-import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonSplitPane,
+  IonSpinner,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 import { getCurrentUser } from "./firebaseConfig";
+
+import Menu from "./components/Menu";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -31,11 +40,11 @@ const App: React.FC = () => {
   useEffect(() => {
     getCurrentUser().then((user) => {
       console.log(user);
-      if (!user) {
+      if (user) {
         // User is logged in
-        window.history.replaceState({}, "", "/page/Dashboard");
+        window.history.replaceState({}, "", "/Dashboard");
       } else {
-        window.history.replaceState({}, "", "/page/Login");
+        window.history.replaceState({}, "", "/Home");
       }
       setBusy(false);
     });
@@ -43,14 +52,21 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/page/:name" component={Page} exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
+      {busy ? (
+        <IonSpinner />
+      ) : (
+        <IonReactRouter>
+          <IonSplitPane contentId="main">
+            <Menu content-id="main" />
+            <IonRouterOutlet id="main">
+              <Route path="/Home" component={Home} exact />
+              <Route path="/Login" component={Login} exact />
+              <Route path="/Register" component={Register} exact />
+              <Route path="/Dashboard" component={Dashboard} exact />
+            </IonRouterOutlet>
+          </IonSplitPane>
+        </IonReactRouter>
+      )}
     </IonApp>
   );
 };
