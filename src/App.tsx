@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  IonApp,
-  IonRouterOutlet,
-  IonSplitPane,
-  IonSpinner,
-} from "@ionic/react";
+import React, { useEffect } from "react";
+import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 import { getCurrentUser } from "./firebaseConfig";
@@ -33,40 +28,37 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import { setUserState } from "./redux/actions";
+import { useDispatch } from "react-redux";
 
 const App: React.FC = () => {
-  const [busy, setBusy] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrentUser().then((user) => {
-      console.log(user);
+    getCurrentUser().then((user: any) => {
       if (user) {
         // User is logged in
+        dispatch(setUserState(user.email));
         window.history.replaceState({}, "", "/Dashboard");
       } else {
-        window.history.replaceState({}, "", "/Home");
+        window.history.replaceState({}, "", "/");
       }
-      setBusy(false);
     });
-  }, []);
+  });
 
   return (
     <IonApp>
-      {busy ? (
-        <IonSpinner />
-      ) : (
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            <Menu content-id="main" />
-            <IonRouterOutlet id="main">
-              <Route path="/Home" component={Home} exact />
-              <Route path="/Login" component={Login} exact />
-              <Route path="/Register" component={Register} exact />
-              <Route path="/Dashboard" component={Dashboard} exact />
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
-      )}
+      <IonReactRouter>
+        <IonSplitPane contentId="main">
+          <Menu content-id="main" />
+          <IonRouterOutlet id="main">
+            <Route path="/" component={Home} exact />
+            <Route path="/Login" component={Login} exact />
+            <Route path="/Register" component={Register} exact />
+            <Route path="/Dashboard" component={Dashboard} exact />
+          </IonRouterOutlet>
+        </IonSplitPane>
+      </IonReactRouter>
     </IonApp>
   );
 };

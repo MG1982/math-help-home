@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IonPage,
   IonHeader,
@@ -7,9 +7,29 @@ import {
   IonMenuButton,
   IonTitle,
   IonContent,
+  IonIcon,
+  IonButton,
+  IonLoading,
 } from "@ionic/react";
 
+import { logOutOutline, logOutSharp } from "ionicons/icons";
+
+import { useSelector } from "react-redux";
+import { logoutUser } from "../firebaseConfig";
+import { useHistory } from "react-router";
+
 const Dashboard: React.FC = () => {
+  const username = useSelector((state: any) => state.user.username || "Guest");
+  const history = useHistory();
+  const [busy, setBusy] = useState(false);
+
+  async function logout() {
+    setBusy(true);
+    await logoutUser();
+    setBusy(false);
+    history.replace("/");
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -21,13 +41,22 @@ const Dashboard: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonLoading message="Logging out..." duration={0} isOpen={busy} />
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Dashboard</IonTitle>
           </IonToolbar>
         </IonHeader>
         <div className="container">
-          <p>User Dashboard with practice links will be here</p>
+          <p>Hello {username}</p>
+          <IonButton size="small" color="danger" onClick={logout}>
+            <IonIcon
+              ios={logOutOutline}
+              md={logOutSharp}
+              slot="start"
+            ></IonIcon>
+            Logout
+          </IonButton>
         </div>
       </IonContent>
     </IonPage>
