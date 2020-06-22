@@ -1,25 +1,23 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { logoutUser } from "../firebaseConfig";
 import {
   IonPage,
   IonHeader,
   IonToolbar,
-  IonButtons,
-  IonMenuButton,
   IonTitle,
   IonContent,
+  IonLoading,
   IonIcon,
   IonButton,
-  IonLoading,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
-
+import { useHistory } from "react-router";
 import { logOutOutline, logOutSharp } from "ionicons/icons";
 
-import { useSelector } from "react-redux";
-import { logoutUser } from "../firebaseConfig";
-import { useHistory } from "react-router";
-
 const Dashboard: React.FC = () => {
-  const username = useSelector((state: any) => state.user.username || "Guest");
+  const username = useSelector((state: any) => state.user.username);
   const history = useHistory();
   const [busy, setBusy] = useState(false);
 
@@ -32,32 +30,30 @@ const Dashboard: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>Dashboard</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent>
         <IonLoading message="Logging out..." duration={0} isOpen={busy} />
-        <IonHeader collapse="condense">
+        <IonHeader className="ion-padding">
           <IonToolbar>
-            <IonTitle size="large">Dashboard</IonTitle>
+            <IonTitle className="ion-text-center" size="large">
+              Dashboard
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
-        <div className="container">
-          <p>Hello {username}</p>
-          <IonButton size="small" color="danger" onClick={logout}>
-            <IonIcon
-              ios={logOutOutline}
-              md={logOutSharp}
-              slot="start"
-            ></IonIcon>
-            Logout
-          </IonButton>
-        </div>
+        <IonRow className="ion-padding">
+          <IonCol>
+            <p className="ion-text-left">Welcome back {username}</p>
+          </IonCol>
+          <IonCol className="ion-text-right">
+            <IonButton size="small" color="danger" onClick={logout}>
+              <IonIcon
+                ios={logOutOutline}
+                md={logOutSharp}
+                slot="end"
+              ></IonIcon>
+              Logout
+            </IonButton>
+          </IonCol>
+        </IonRow>
       </IonContent>
     </IonPage>
   );

@@ -1,34 +1,61 @@
 import React from "react";
+
 import {
   IonPage,
   IonHeader,
   IonToolbar,
-  IonButtons,
-  IonMenuButton,
   IonTitle,
   IonContent,
+  IonButton,
+  IonIcon,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
+
+import {
+  logInOutline,
+  personAddOutline,
+  personAddSharp,
+  logInSharp,
+} from "ionicons/icons";
 
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
+        <IonHeader className="ion-padding">
           <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
+            <IonTitle className="ion-text-center" size="large">
+              Math-Home-Help
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
-        <div className="container">
-          <p>App description on this page</p>
-        </div>
+        <IonRow className="ion-padding">
+          <IonCol className="ion-text-center">
+            <IonButton size="small" routerLink="/Login">
+              <IonIcon slot="start" ios={logInOutline} md={logInSharp} />
+              Login
+            </IonButton>
+            <IonButton size="small" routerLink="/Register">
+              <IonIcon
+                slot="start"
+                ios={personAddOutline}
+                md={personAddSharp}
+              />
+              Register
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <p className="ion-text-center">Welcome to Math-Help-Home!</p>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <p className="ion-text-center">Login to get started.</p>
+          </IonCol>
+        </IonRow>
       </IonContent>
     </IonPage>
   );

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
+import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 import { getCurrentUser } from "./firebaseConfig";
 
-import Menu from "./components/Menu";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -49,15 +48,12 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu content-id="main" />
-          <IonRouterOutlet id="main">
-            <Route path="/" component={Home} exact />
-            <Route path="/Login" component={Login} exact />
-            <Route path="/Register" component={Register} exact />
-            <Route path="/Dashboard" component={Dashboard} exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
+        <IonRouterOutlet id="main">
+          <Route path="/" component={Home} exact />
+          <Route path="/Login" component={Login} exact />
+          <Route path="/Register" component={Register} exact />
+          <Route path="/Dashboard" component={Dashboard} exact />
+        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );
