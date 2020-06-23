@@ -51,7 +51,7 @@ const Multiplication: React.FC = () => {
     }
     if (wrong >= 2) {
       userInputRef.current!.value = "";
-      toast("Oops, Start again");
+      toast("Oops!, Start again");
       setWrong(0);
       setCorrect(0);
       setParam2(0);
@@ -105,7 +105,7 @@ const Multiplication: React.FC = () => {
                   <IonSelectOption value="12">12</IonSelectOption>
                 </IonSelect>
               ) : (
-                <IonLabel>{param2}x selected</IonLabel>
+                <IonLabel>{param2}x selected</IonLabel> || <IonLabel></IonLabel>
               )}
             </IonItem>
           </IonCol>

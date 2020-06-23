@@ -19,7 +19,7 @@ import {
 import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
-const Addition: React.FC = () => {
+const Subtraction: React.FC = () => {
   const [param1, setParam1] = useState(Math.floor(Math.random() * 1000 + 1));
   const [param2, setParam2] = useState(Math.floor(Math.random() * 1000 + 1));
   const [correct, setCorrect] = useState(0);
@@ -30,7 +30,7 @@ const Addition: React.FC = () => {
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = param1 + param2;
+    const answer = param1 - param2;
 
     if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
@@ -63,14 +63,14 @@ const Addition: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="secondary">
-          <IonTitle className="ion-text-center">Addition</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle className="ion-text-center">Subtraction</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonRow>
           <IonCol className="ion-text-left">
-            <IonButton routerLink="/Dashboard" color="secondary" size="small">
+            <IonButton routerLink="/Dashboard" color="primary" size="small">
               <IonIcon ios={arrowBack} slot="start"></IonIcon>
               Return to Dashboard
             </IonButton>
@@ -83,7 +83,7 @@ const Addition: React.FC = () => {
           <IonCol>
             <IonLabel className="ion-padding ion-text-center">
               <h1>
-                {param1} + {param2} =
+                {param1} - {param2} =
               </h1>
             </IonLabel>
           </IonCol>
@@ -98,7 +98,7 @@ const Addition: React.FC = () => {
         </IonRow>
         <IonRow>
           <IonCol className="ion-text-center">
-            <IonButton onClick={checkAnswer} color="secondary">
+            <IonButton onClick={checkAnswer} color="primary">
               Check Answer
             </IonButton>
           </IonCol>
@@ -121,4 +121,4 @@ const Addition: React.FC = () => {
   );
 };
 
-export default Addition;
+export default Subtraction;

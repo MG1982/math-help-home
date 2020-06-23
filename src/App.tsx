@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Multiplication from "./pages/Multiplication";
 import Addition from "./pages/Addition";
+import Subtraction from "./pages/Subtraction";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -57,6 +58,7 @@ const App: React.FC = () => {
           <Route path="/Dashboard" component={Dashboard} exact />
           <Route path="/Multiplication" component={Multiplication} exact />
           <Route path="/Addition" component={Addition} exact />
+          <Route path="/Subtraction" component={Subtraction} exact />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

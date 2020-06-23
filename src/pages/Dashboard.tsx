@@ -21,6 +21,8 @@ import {
   closeSharp,
   addOutline,
   addSharp,
+  removeOutline,
+  removeSharp,
 } from "ionicons/icons";
 
 const Dashboard: React.FC = () => {
@@ -63,17 +65,37 @@ const Dashboard: React.FC = () => {
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton routerLink="/Multiplication" expand="full">
-              <IonIcon ios={closeOutline} md={closeSharp} slot="end"></IonIcon>
+            <IonButton
+              routerLink="/Multiplication"
+              expand="full"
+              color="tertiary"
+            >
+              <IonIcon
+                ios={closeOutline}
+                md={closeSharp}
+                slot="start"
+              ></IonIcon>
               Multiplication
             </IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton routerLink="/Addition" expand="full">
-              <IonIcon ios={addOutline} md={addSharp} slot="end"></IonIcon>
+            <IonButton routerLink="/Addition" expand="full" color="secondary">
+              <IonIcon ios={addOutline} md={addSharp} slot="start"></IonIcon>
               Addition
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton routerLink="/Subtraction" expand="full" color="primary">
+              <IonIcon
+                ios={removeOutline}
+                md={removeSharp}
+                slot="start"
+              ></IonIcon>
+              Subtraction
             </IonButton>
           </IonCol>
         </IonRow>
