@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         <IonHeader className="ion-padding">
           <IonToolbar>
             <IonTitle className="ion-text-center" size="large">
-              Math-Home-Help
+              Math-Help-Home
             </IonTitle>
           </IonToolbar>
         </IonHeader>

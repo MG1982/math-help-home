@@ -14,7 +14,12 @@ import {
   IonCol,
 } from "@ionic/react";
 import { useHistory } from "react-router";
-import { logOutOutline, logOutSharp } from "ionicons/icons";
+import {
+  logOutOutline,
+  logOutSharp,
+  closeOutline,
+  closeSharp,
+} from "ionicons/icons";
 
 const Dashboard: React.FC = () => {
   const username = useSelector((state: any) => state.user.username);
@@ -51,6 +56,14 @@ const Dashboard: React.FC = () => {
                 slot="end"
               ></IonIcon>
               Logout
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton routerLink="/Multiplication" expand="full">
+              <IonIcon ios={closeOutline} md={closeSharp} slot="end"></IonIcon>
+              Multiplication
             </IonButton>
           </IonCol>
         </IonRow>

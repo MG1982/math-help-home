@@ -29,6 +29,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { setUserState } from "./redux/actions";
 import { useDispatch } from "react-redux";
+import Multiplication from "./pages/Multiplication";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const App: React.FC = () => {
           <Route path="/Login" component={Login} exact />
           <Route path="/Register" component={Register} exact />
           <Route path="/Dashboard" component={Dashboard} exact />
+          <Route path="/Multiplication" component={Multiplication} exact />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
