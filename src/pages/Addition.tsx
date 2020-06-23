@@ -11,19 +11,18 @@ import {
   IonCol,
   IonLabel,
   IonItem,
-  IonSelect,
-  IonSelectOption,
   IonInput,
   IonListHeader,
   IonNote,
+  IonAlert,
   IonIcon,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
-const Multiplication: React.FC = () => {
-  const [param1, setParam1] = useState(1);
-  const [param2, setParam2] = useState(Number);
+const Addition: React.FC = () => {
+  const [param1, setParam1] = useState(Math.floor(Math.random() * 1000 + 1));
+  const [param2, setParam2] = useState(Math.floor(Math.random() * 1000 + 1));
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
 
@@ -32,12 +31,9 @@ const Multiplication: React.FC = () => {
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = param1 * param2;
+    const answer = param1 + param2;
 
-    if (!param2) {
-      toast("Please select a times table");
-      return;
-    } else if (!userAnswer) {
+    if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
       return;
     }
@@ -46,7 +42,8 @@ const Multiplication: React.FC = () => {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
-      setParam1(Math.floor(Math.random() * 12 + 1));
+      setParam1(Math.floor(Math.random() * 1000 + 1));
+      setParam2(Math.floor(Math.random() * 1000 + 1));
       return;
     }
     if (wrong >= 2) {
@@ -60,14 +57,15 @@ const Multiplication: React.FC = () => {
     setWrong(wrong + 1);
     toast("Oops! That's Not Correct");
     userInputRef.current!.value = "";
-    setParam1(Math.floor(Math.random() * 12 + 1));
+    setParam1(Math.floor(Math.random() * 1000 + 1));
+    setParam2(Math.floor(Math.random() * 1000 + 1));
   };
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="tertiary">
-          <IonTitle className="ion-text-center">Multiplication</IonTitle>
+          <IonTitle className="ion-text-center">Addition</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -84,37 +82,9 @@ const Multiplication: React.FC = () => {
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonItem>
-              <IonLabel>Times Table</IonLabel>
-              {param2 < 1 ? (
-                <IonSelect
-                  value={param2}
-                  onIonChange={(e) => setParam2(e.detail.value)}
-                >
-                  <IonSelectOption value="1">1</IonSelectOption>
-                  <IonSelectOption value="2">2</IonSelectOption>
-                  <IonSelectOption value="3">3</IonSelectOption>
-                  <IonSelectOption value="4">4</IonSelectOption>
-                  <IonSelectOption value="5">5</IonSelectOption>
-                  <IonSelectOption value="6">6</IonSelectOption>
-                  <IonSelectOption value="7">7</IonSelectOption>
-                  <IonSelectOption value="8">8</IonSelectOption>
-                  <IonSelectOption value="9">9</IonSelectOption>
-                  <IonSelectOption value="10">10</IonSelectOption>
-                  <IonSelectOption value="11">11</IonSelectOption>
-                  <IonSelectOption value="12">12</IonSelectOption>
-                </IonSelect>
-              ) : (
-                <IonLabel>{param2}x selected</IonLabel>
-              )}
-            </IonItem>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol>
             <IonLabel className="ion-padding ion-text-center">
               <h1>
-                {param1} x {param2} =
+                {param1} + {param2} =
               </h1>
             </IonLabel>
           </IonCol>
@@ -152,4 +122,4 @@ const Multiplication: React.FC = () => {
   );
 };
 
-export default Multiplication;
+export default Addition;

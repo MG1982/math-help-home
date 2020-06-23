@@ -19,6 +19,8 @@ import {
   logOutSharp,
   closeOutline,
   closeSharp,
+  addOutline,
+  addSharp,
 } from "ionicons/icons";
 
 const Dashboard: React.FC = () => {
@@ -64,6 +66,14 @@ const Dashboard: React.FC = () => {
             <IonButton routerLink="/Multiplication" expand="full">
               <IonIcon ios={closeOutline} md={closeSharp} slot="end"></IonIcon>
               Multiplication
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton routerLink="/Addition" expand="full">
+              <IonIcon ios={addOutline} md={addSharp} slot="end"></IonIcon>
+              Addition
             </IonButton>
           </IonCol>
         </IonRow>

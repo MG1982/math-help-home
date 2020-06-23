@@ -3,11 +3,15 @@ import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 import { getCurrentUser } from "./firebaseConfig";
+import { setUserState } from "./redux/actions";
+import { useDispatch } from "react-redux";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Multiplication from "./pages/Multiplication";
+import Addition from "./pages/Addition";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -27,9 +31,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { setUserState } from "./redux/actions";
-import { useDispatch } from "react-redux";
-import Multiplication from "./pages/Multiplication";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const App: React.FC = () => {
           <Route path="/Register" component={Register} exact />
           <Route path="/Dashboard" component={Dashboard} exact />
           <Route path="/Multiplication" component={Multiplication} exact />
+          <Route path="/Addition" component={Addition} exact />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
