@@ -48,10 +48,7 @@ const Dashboard: React.FC = () => {
             </IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonRow className="ion-padding">
-          <IonCol>
-            <p className="ion-text-left">Welcome back {username}</p>
-          </IonCol>
+        <IonRow>
           <IonCol className="ion-text-right">
             <IonButton size="small" color="danger" onClick={logout}>
               <IonIcon
@@ -63,39 +60,40 @@ const Dashboard: React.FC = () => {
             </IonButton>
           </IonCol>
         </IonRow>
+        <IonRow className="ion-padding">
+          <IonCol>
+            <p className="ion-text-left">Welcome back {username}</p>
+          </IonCol>
+        </IonRow>
         <IonRow>
           <IonCol>
             <IonButton
               routerLink="/Multiplication"
-              expand="full"
+              expand="block"
               color="tertiary"
             >
-              <IonIcon
-                ios={closeOutline}
-                md={closeSharp}
-                slot="start"
-              ></IonIcon>
               Multiplication
             </IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton routerLink="/Addition" expand="full" color="secondary">
-              <IonIcon ios={addOutline} md={addSharp} slot="start"></IonIcon>
+            <IonButton routerLink="/Addition" expand="block" color="secondary">
               Addition
             </IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton routerLink="/Subtraction" expand="full" color="primary">
-              <IonIcon
-                ios={removeOutline}
-                md={removeSharp}
-                slot="start"
-              ></IonIcon>
+            <IonButton routerLink="/Subtraction" expand="block" color="success">
               Subtraction
+            </IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton routerLink="/Division" expand="block" color="warning">
+              Division
             </IonButton>
           </IonCol>
         </IonRow>

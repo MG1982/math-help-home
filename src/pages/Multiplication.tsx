@@ -78,6 +78,8 @@ const Multiplication: React.FC = () => {
               Return to Dashboard
             </IonButton>
           </IonCol>
+        </IonRow>
+        <IonRow>
           <IonCol className="ion-text-right">
             <IonLabel>{date}</IonLabel>
           </IonCol>

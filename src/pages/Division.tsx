@@ -19,9 +19,9 @@ import {
 import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
-const Addition: React.FC = () => {
-  const [param1, setParam1] = useState(Math.floor(Math.random() * 1000 + 1));
-  const [param2, setParam2] = useState(Math.floor(Math.random() * 1000 + 1));
+const Division: React.FC = () => {
+  const [param1, setParam1] = useState(Math.floor(Math.random() * 999 + 100));
+  const [param2, setParam2] = useState(Math.floor(Math.random() * 99 + 1));
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
 
@@ -30,7 +30,7 @@ const Addition: React.FC = () => {
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = param1 + param2;
+    const answer = (param1 / param2).toFixed(0);
 
     if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
@@ -41,8 +41,8 @@ const Addition: React.FC = () => {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
-      setParam1(Math.floor(Math.random() * 1000 + 1));
-      setParam2(Math.floor(Math.random() * 1000 + 1));
+      setParam1(Math.floor(Math.random() * 999 + 100));
+      setParam2(Math.floor(Math.random() * 99 + 1));
       return;
     }
     if (wrong >= 2) {
@@ -56,21 +56,21 @@ const Addition: React.FC = () => {
     setWrong(wrong + 1);
     toast("Oops! That's Not Correct");
     userInputRef.current!.value = "";
-    setParam1(Math.floor(Math.random() * 1000 + 1));
-    setParam2(Math.floor(Math.random() * 1000 + 1));
+    setParam1(Math.floor(Math.random() * 999 + 100));
+    setParam2(Math.floor(Math.random() * 99 + 1));
   };
 
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="secondary">
-          <IonTitle className="ion-text-center">Addition</IonTitle>
+        <IonToolbar color="warning">
+          <IonTitle className="ion-text-center">Division</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonRow>
           <IonCol className="ion-text-left">
-            <IonButton routerLink="/Dashboard" color="secondary" size="small">
+            <IonButton routerLink="/Dashboard" color="warning" size="small">
               <IonIcon ios={arrowBack} slot="start"></IonIcon>
               Return to Dashboard
             </IonButton>
@@ -81,11 +81,12 @@ const Addition: React.FC = () => {
             <IonLabel>{date}</IonLabel>
           </IonCol>
         </IonRow>
+        <IonRow></IonRow>
         <IonRow>
           <IonCol>
             <IonLabel className="ion-padding ion-text-center">
               <h1>
-                {param1} + {param2} =
+                {param1} ÷ {param2} =
               </h1>
             </IonLabel>
           </IonCol>
@@ -99,8 +100,17 @@ const Addition: React.FC = () => {
           </IonCol>
         </IonRow>
         <IonRow>
+          <IonCol>
+            <IonNote>
+              <p className="ion-padding ion-text-center">
+                Round up or down to the nearest whole number (e.g. 3.5 = 4)
+              </p>
+            </IonNote>
+          </IonCol>
+        </IonRow>
+        <IonRow>
           <IonCol className="ion-text-center">
-            <IonButton onClick={checkAnswer} color="secondary">
+            <IonButton onClick={checkAnswer} color="warning">
               Check Answer
             </IonButton>
           </IonCol>
@@ -123,4 +133,4 @@ const Addition: React.FC = () => {
   );
 };
 
-export default Addition;
+export default Division;

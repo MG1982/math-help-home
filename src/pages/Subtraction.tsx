@@ -63,18 +63,20 @@ const Subtraction: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="primary">
+        <IonToolbar color="success">
           <IonTitle className="ion-text-center">Subtraction</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonRow>
           <IonCol className="ion-text-left">
-            <IonButton routerLink="/Dashboard" color="primary" size="small">
+            <IonButton routerLink="/Dashboard" color="success" size="small">
               <IonIcon ios={arrowBack} slot="start"></IonIcon>
               Return to Dashboard
             </IonButton>
           </IonCol>
+        </IonRow>
+        <IonRow>
           <IonCol className="ion-text-right">
             <IonLabel>{date}</IonLabel>
           </IonCol>
@@ -98,7 +100,7 @@ const Subtraction: React.FC = () => {
         </IonRow>
         <IonRow>
           <IonCol className="ion-text-center">
-            <IonButton onClick={checkAnswer} color="primary">
+            <IonButton onClick={checkAnswer} color="success">
               Check Answer
             </IonButton>
           </IonCol>
