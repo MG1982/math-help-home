@@ -24,20 +24,21 @@ const Division: React.FC = () => {
   const [param2, setParam2] = useState(Math.floor(Math.random() * 99 + 1));
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const userInputRef = useRef<HTMLIonInputElement>(null);
   const date = moment().format("MMMM Do YYYY");
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = (param1 / param2).toFixed(0);
+    const answer = (+param1 / +param2).toFixed(0);
 
     if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
       return;
     }
 
-    if (userAnswer == answer) {
+    if (+userAnswer === +answer) {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
@@ -59,6 +60,10 @@ const Division: React.FC = () => {
     setParam1(Math.floor(Math.random() * 999 + 100));
     setParam2(Math.floor(Math.random() * 99 + 1));
   };
+
+  if (correct > highScore) {
+    setHighScore(correct);
+  }
 
   return (
     <IonPage>
@@ -126,6 +131,12 @@ const Division: React.FC = () => {
           <IonLabel>Wrong</IonLabel>
           <IonNote slot="end" color="danger">
             <h2>{wrong}</h2>
+          </IonNote>
+        </IonItem>
+        <IonItem>
+          <IonLabel>High Score</IonLabel>
+          <IonNote slot="end" color="warning">
+            <h2>{highScore}</h2>
           </IonNote>
         </IonItem>
       </IonContent>

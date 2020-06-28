@@ -14,16 +14,7 @@ import {
   IonCol,
 } from "@ionic/react";
 import { useHistory } from "react-router";
-import {
-  logOutOutline,
-  logOutSharp,
-  closeOutline,
-  closeSharp,
-  addOutline,
-  addSharp,
-  removeOutline,
-  removeSharp,
-} from "ionicons/icons";
+import { logOutOutline, logOutSharp } from "ionicons/icons";
 
 const Dashboard: React.FC = () => {
   const username = useSelector((state: any) => state.user.username);

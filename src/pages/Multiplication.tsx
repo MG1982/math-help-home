@@ -22,17 +22,18 @@ import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
 const Multiplication: React.FC = () => {
-  const [param1, setParam1] = useState(1);
+  const [param1, setParam1] = useState(Math.floor(Math.random() * 12 + 1));
   const [param2, setParam2] = useState(Number);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const userInputRef = useRef<HTMLIonInputElement>(null);
   const date = moment().format("MMMM Do YYYY");
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = param1 * param2;
+    const answer = +param1 * +param2;
 
     if (!param2) {
       toast("Please select a times table");
@@ -42,7 +43,7 @@ const Multiplication: React.FC = () => {
       return;
     }
 
-    if (userAnswer == answer) {
+    if (+userAnswer === +answer) {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
@@ -62,6 +63,10 @@ const Multiplication: React.FC = () => {
     userInputRef.current!.value = "";
     setParam1(Math.floor(Math.random() * 12 + 1));
   };
+
+  if (correct > highScore) {
+    setHighScore(correct);
+  }
 
   return (
     <IonPage>
@@ -92,6 +97,7 @@ const Multiplication: React.FC = () => {
                 <IonSelect
                   value={param2}
                   onIonChange={(e) => setParam2(e.detail.value)}
+                  interface="action-sheet"
                 >
                   <IonSelectOption value="1">1</IonSelectOption>
                   <IonSelectOption value="2">2</IonSelectOption>
@@ -147,6 +153,12 @@ const Multiplication: React.FC = () => {
           <IonLabel>Wrong</IonLabel>
           <IonNote slot="end" color="danger">
             <h2>{wrong}</h2>
+          </IonNote>
+        </IonItem>
+        <IonItem>
+          <IonLabel>High Score</IonLabel>
+          <IonNote slot="end" color="warning">
+            <h2>{highScore}</h2>
           </IonNote>
         </IonItem>
       </IonContent>

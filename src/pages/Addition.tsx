@@ -20,29 +20,30 @@ import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
 const Addition: React.FC = () => {
-  const [param1, setParam1] = useState(Math.floor(Math.random() * 1000 + 1));
-  const [param2, setParam2] = useState(Math.floor(Math.random() * 1000 + 1));
+  const [param1, setParam1] = useState(Math.floor(Math.random() * 990 + 10));
+  const [param2, setParam2] = useState(Math.floor(Math.random() * 990 + 10));
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const userInputRef = useRef<HTMLIonInputElement>(null);
   const date = moment().format("MMMM Do YYYY");
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
-    const answer = param1 + param2;
+    const answer = +param1 + +param2;
 
     if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
       return;
     }
 
-    if (userAnswer == answer) {
+    if (+userAnswer === +answer) {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
-      setParam1(Math.floor(Math.random() * 1000 + 1));
-      setParam2(Math.floor(Math.random() * 1000 + 1));
+      setParam1(Math.floor(Math.random() * 990 + 10));
+      setParam2(Math.floor(Math.random() * 990 + 10));
       return;
     }
     if (wrong >= 2) {
@@ -50,15 +51,19 @@ const Addition: React.FC = () => {
       toast("Oops!, Start again");
       setWrong(0);
       setCorrect(0);
-      setParam2(0);
+      setParam2(Math.floor(Math.random() * 990 + 10));
       return;
     }
     setWrong(wrong + 1);
     toast("Oops! That's Not Correct");
     userInputRef.current!.value = "";
-    setParam1(Math.floor(Math.random() * 1000 + 1));
-    setParam2(Math.floor(Math.random() * 1000 + 1));
+    setParam1(Math.floor(Math.random() * 990 + 10));
+    setParam2(Math.floor(Math.random() * 990 + 10));
   };
+
+  if (correct > highScore) {
+    setHighScore(correct);
+  }
 
   return (
     <IonPage>
@@ -116,6 +121,12 @@ const Addition: React.FC = () => {
           <IonLabel>Wrong</IonLabel>
           <IonNote slot="end" color="danger">
             <h2>{wrong}</h2>
+          </IonNote>
+        </IonItem>
+        <IonItem>
+          <IonLabel>High Score</IonLabel>
+          <IonNote slot="end" color="warning">
+            <h2>{highScore}</h2>
           </IonNote>
         </IonItem>
       </IonContent>
