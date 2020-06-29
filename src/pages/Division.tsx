@@ -15,19 +15,23 @@ import {
   IonListHeader,
   IonNote,
   IonIcon,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import { toast } from "../toast";
 
 const Division: React.FC = () => {
+  const [difficulty, setDifficulty] = useState(1);
   const [param1, setParam1] = useState(Math.floor(Math.random() * 999 + 100));
-  const [param2, setParam2] = useState(Math.floor(Math.random() * 99 + 1));
+  const [param2, setParam2] = useState(Math.floor(Math.random() * 99 + 2));
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
   const userInputRef = useRef<HTMLIonInputElement>(null);
   const date = moment().format("MMMM Do YYYY");
+  const selectedDifficulty = difficulty;
 
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
@@ -42,8 +46,8 @@ const Division: React.FC = () => {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
-      setParam1(Math.floor(Math.random() * 999 + 100));
-      setParam2(Math.floor(Math.random() * 99 + 1));
+      setParam1(Math.floor(Math.random() * selectedDifficulty + 100));
+      setParam2(Math.floor(Math.random() * (selectedDifficulty / 2) + 2));
       return;
     }
     if (wrong >= 2) {
@@ -57,8 +61,8 @@ const Division: React.FC = () => {
     setWrong(wrong + 1);
     toast("Oops! That's Not Correct");
     userInputRef.current!.value = "";
-    setParam1(Math.floor(Math.random() * 999 + 100));
-    setParam2(Math.floor(Math.random() * 99 + 1));
+    setParam1(Math.floor(Math.random() * selectedDifficulty + 100));
+    setParam2(Math.floor(Math.random() * (selectedDifficulty / 2) + 2));
   };
 
   if (correct > highScore) {
@@ -86,7 +90,22 @@ const Division: React.FC = () => {
             <IonLabel>{date}</IonLabel>
           </IonCol>
         </IonRow>
-        <IonRow></IonRow>
+        <IonRow>
+          <IonCol>
+            <IonItem>
+              <IonLabel>Difficulty</IonLabel>
+              <IonSelect
+                value={difficulty}
+                onIonChange={(e) => setDifficulty(e.detail.value)}
+                interface="action-sheet"
+              >
+                <IonSelectOption value="99">Easy</IonSelectOption>
+                <IonSelectOption value="999">Medium</IonSelectOption>
+                <IonSelectOption value="9999">Hard</IonSelectOption>
+              </IonSelect>
+            </IonItem>
+          </IonCol>
+        </IonRow>
         <IonRow>
           <IonCol>
             <IonLabel className="ion-padding ion-text-center">

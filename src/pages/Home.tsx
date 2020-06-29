@@ -48,12 +48,12 @@ const Home: React.FC = () => {
         </IonRow>
         <IonRow>
           <IonCol>
-            <p className="ion-text-center">Welcome to Math-Help-Home!</p>
+            <h1 className="ion-text-center">Welcome!</h1>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <p className="ion-text-center">Login to get started.</p>
+            <h1 className="ion-text-center">Login to get started.</h1>
           </IonCol>
         </IonRow>
       </IonContent>
