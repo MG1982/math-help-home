@@ -30,6 +30,16 @@ const Home: React.FC = () => {
             </IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonRow>
+          <IonCol>
+            <h1 className="ion-text-center">Welcome!</h1>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <h1 className="ion-text-center">Login to get started.</h1>
+          </IonCol>
+        </IonRow>
         <IonRow className="ion-padding">
           <IonCol className="ion-text-center">
             <IonButton size="small" routerLink="/Login">
@@ -44,16 +54,6 @@ const Home: React.FC = () => {
               />
               Register
             </IonButton>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol>
-            <h1 className="ion-text-center">Welcome!</h1>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol>
-            <h1 className="ion-text-center">Login to get started.</h1>
           </IonCol>
         </IonRow>
       </IonContent>
