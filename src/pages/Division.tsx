@@ -49,7 +49,6 @@ const Division: React.FC = () => {
       setCorrect(correct + 1);
       setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
       setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
-      console.log(answer);
       return;
     } else if (+userAnswer === +answer) {
       toast("Well Done! That's Correct");
@@ -57,7 +56,6 @@ const Division: React.FC = () => {
       setCorrect(correct + 1);
       setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
       setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
-      console.log(answer);
       return;
     }
     if (wrong >= 2) {
@@ -65,7 +63,8 @@ const Division: React.FC = () => {
       toast("Oops!, Start again");
       setWrong(0);
       setCorrect(0);
-      setParam2(0);
+      setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
+      setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
       return;
     }
     setWrong(wrong + 1);
@@ -73,7 +72,6 @@ const Division: React.FC = () => {
     userInputRef.current!.value = "";
     setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
     setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
-    console.log(answer);
   };
 
   if (correct > highScore) {
@@ -138,7 +136,8 @@ const Division: React.FC = () => {
           <IonCol>
             <IonNote>
               <p className="ion-padding ion-text-center">
-                Round up or down to the nearest whole number (e.g. 3.5 = 4)
+                Round up or down to the nearest whole number (e.g. 3.5 = 4, 3.4
+                = 3)
               </p>
             </IonNote>
           </IonCol>

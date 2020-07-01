@@ -55,6 +55,7 @@ const Addition: React.FC = () => {
       toast("Oops!, Start again");
       setWrong(0);
       setCorrect(0);
+      setParam1(Math.floor(Math.random() * (90 + 10) * selectedDifficulty));
       setParam2(Math.floor(Math.random() * (90 + 10) * selectedDifficulty));
       return;
     }

@@ -57,7 +57,7 @@ const Multiplication: React.FC = () => {
       toast("Oops!, Start again");
       setWrong(0);
       setCorrect(0);
-      setParam2(0);
+      setParam1(Math.floor(Math.random() * (12 + 1) * selectedDifficulty));
       return;
     }
     setWrong(wrong + 1);
