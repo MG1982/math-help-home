@@ -35,7 +35,7 @@ const Login: React.FC = () => {
     if (res) {
       dispatch(setUserState(res.user.email));
       history.replace("/Dashboard");
-      toast("You have logged in!");
+      toast(username + " is logged in!");
     }
     setBusy(false);
   }

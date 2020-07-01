@@ -36,18 +36,28 @@ const Division: React.FC = () => {
   const checkAnswer = () => {
     const userAnswer = userInputRef.current!.value;
     const answer = (+param1 / +param2).toFixed(0);
+    console.log(answer);
 
     if (!userAnswer) {
       toast("Please enter a valid number in your answer field");
       return;
     }
 
-    if (+userAnswer === +answer) {
+    if (answer === "Infinity" && +userAnswer === 0) {
       toast("Well Done! That's Correct");
       userInputRef.current!.value = "";
       setCorrect(correct + 1);
-      setParam1(Math.floor(Math.random() * selectedDifficulty + 100));
-      setParam2(Math.floor(Math.random() * (selectedDifficulty / 2) + 2));
+      setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
+      setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
+      console.log(answer);
+      return;
+    } else if (+userAnswer === +answer) {
+      toast("Well Done! That's Correct");
+      userInputRef.current!.value = "";
+      setCorrect(correct + 1);
+      setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
+      setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
+      console.log(answer);
       return;
     }
     if (wrong >= 2) {
@@ -61,8 +71,9 @@ const Division: React.FC = () => {
     setWrong(wrong + 1);
     toast("Oops! That's Not Correct");
     userInputRef.current!.value = "";
-    setParam1(Math.floor(Math.random() * selectedDifficulty + 100));
-    setParam2(Math.floor(Math.random() * (selectedDifficulty / 2) + 2));
+    setParam1(Math.floor(Math.random() * (999 + 100) * selectedDifficulty));
+    setParam2(Math.floor(Math.random() * (99 + 2) * selectedDifficulty));
+    console.log(answer);
   };
 
   if (correct > highScore) {
@@ -99,9 +110,9 @@ const Division: React.FC = () => {
                 onIonChange={(e) => setDifficulty(e.detail.value)}
                 interface="action-sheet"
               >
-                <IonSelectOption value="99">Easy</IonSelectOption>
-                <IonSelectOption value="999">Medium</IonSelectOption>
-                <IonSelectOption value="9999">Hard</IonSelectOption>
+                <IonSelectOption value="4">Easy</IonSelectOption>
+                <IonSelectOption value="8">Medium</IonSelectOption>
+                <IonSelectOption value="12">Hard</IonSelectOption>
               </IonSelect>
             </IonItem>
           </IonCol>

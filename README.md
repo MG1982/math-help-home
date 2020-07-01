@@ -25,6 +25,6 @@ Now I can set them a challenge and once they reach their goal they can send me a
 
 - The current date is on the top of the page (to stop cheeky kids sending me the same results).
 - The difficulty can be set.
-- In the results section are coreect and wrong guess counters. The counters are reset if 3 questions are answered wrong.
+- In the results section are correct and wrong guess counters. The counters are reset if 3 questions are answered wrong.
 
 My kids use iPad's so <a href="https://ionicframework.com/docs/react" target="_blank">Ionic-React</a> was my choice for the front end framework giving the application a native feel.
