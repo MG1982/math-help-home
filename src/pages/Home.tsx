@@ -10,6 +10,8 @@ import {
   IonIcon,
   IonRow,
   IonCol,
+  IonFooter,
+  IonNote,
 } from "@ionic/react";
 
 import {
@@ -56,6 +58,22 @@ const Home: React.FC = () => {
             </IonButton>
           </IonCol>
         </IonRow>
+        <IonFooter className="ion-text-center">
+          <IonToolbar>
+            <IonNote>
+              <p>
+                Created by{" "}
+                <a
+                  href="http://manigonzalez.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Mani Gonzalez
+                </a>
+              </p>
+            </IonNote>
+          </IonToolbar>
+        </IonFooter>
       </IonContent>
     </IonPage>
   );
